@@ -46,3 +46,26 @@ document.querySelector('.btn--close-cookie').addEventListener('click', () => mes
 message.style.height = Number.parseFloat(getComputedStyle(message).height) + 30 + 'px'
 
 //document.documentElement.style.setProperty('--color-primary', 'orange') // targets root elemen
+
+// Smooth scrolling
+
+const btnScrollTo = document.querySelector('.btn--scroll-to')
+const section1 = document.querySelector('#section--1')
+
+btnScrollTo.addEventListener('click', (e) => {
+  //const s1coords = section1.getBoundingClientRect()
+  
+  // instant
+  //window.scrollTo(s1coords.left, s1coords.top + window.scrollY)
+
+  // old way
+  // window.scrollTo({
+  //   left: s1coords.left, 
+  //   top: s1coords.top + window.scrollY,
+  //   behavior: "smooth"
+  // })
+
+  // new way
+  section1.scrollIntoView({behavior: 'smooth'})
+
+})

@@ -125,3 +125,33 @@ btnScrollTo.addEventListener('click', (e) => {
 //   this.style.backgroundColor = randomColor()
 //   console.log(e.target, e.currentTarget)
 // }, true) // this sets to listening for the event in capturing phase, so it will triggers first. Not commonly used
+
+
+// dom traversing
+
+const h1 = document.querySelector('h1')
+console.log(h1.querySelectorAll('.highlight'))
+console.log(h1.childNodes) // Node
+console.log(h1.children) // HTML collection
+console.log(h1.firstElementChild)
+console.log(h1.lastElementChild)
+console.log(h1.firstChild)
+console.log(h1.lastChild)
+
+// parents
+
+console.log(h1.parentNode)
+console.log(h1.parentElement)
+console.log(h1.parentElement)
+
+h1.closest('.header').style.background = 'var(--gradient-secondary)' // selects the closest element that matches the parameter
+
+h1.closest('h1').style.background = 'var(--gradient-primary)'
+
+// sideways
+
+console.log(h1.previousElementSibling)
+console.log(h1.nextElementSibling)
+console.log(h1.nextSibling)
+console.log(h1.parentElement.children)
+

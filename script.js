@@ -31,6 +31,31 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+// navigation scrolling / event delgation
+/*  
+document.querySelectorAll('.nav__link').forEach(link => link.addEventListener('click', (e) => {
+  e.preventDefault()
+  const id = e.target.getAttribute('href')
+  document.querySelector(id).scrollIntoView({behavior: 'smooth'})
+}))
+
+Above example is not practical in large scope applications, as it can lead to performance issues.
+Since events uses bubbling, we can use event delegation instead:
+
+1. add event listener to common parent of all elements
+2. determine what element originated the event
+*/
+
+document.querySelector('.nav__links').addEventListener('click', (e) => {
+  e.preventDefault()
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href')
+    document.querySelector(id).scrollIntoView({behavior: 'smooth'})
+  }
+})
+
+// cookies
+
 const message = document.createElement('div')
 message.classList.add('cookie-message')
 message.innerHTML = 'We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button>'
@@ -67,5 +92,36 @@ btnScrollTo.addEventListener('click', (e) => {
 
   // new way
   section1.scrollIntoView({behavior: 'smooth'})
-
 })
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+//document.querySelector('h1').addEventListener('mouseenter', (e) => alert('heading'))
+
+// old way:
+// const h1 = document.querySelector('h1')
+// h1.onmouseenter = (e) => alert(e)
+
+// event bubbling and capturing
+
+// const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+// const randomColor = () => `rgb(${randomInt(0,255)},${randomInt(0,255)},${randomInt(0,255)})`
+
+// document.querySelector('.nav__link').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor()
+//   console.log(e.target, e.currentTarget)
+// })
+
+// document.querySelector('.nav__links').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor()
+//   console.log(e.target, e.currentTarget)
+
+//   //e.stopPropagation()  // stops event propagation to parent elements
+// })
+
+// document.querySelector('.nav').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor()
+//   console.log(e.target, e.currentTarget)
+// }, true) // this sets to listening for the event in capturing phase, so it will triggers first. Not commonly used

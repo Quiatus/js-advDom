@@ -8,6 +8,10 @@ const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const header = document.querySelector('.header')
+const nav = document.querySelector('.nav')
+const tabs = document.querySelectorAll('.operations__tab')
+const tabsContainer = document.querySelector('.operations__tab-container')
+const tabsContent = document.querySelectorAll('.operations__content')
 
 const openModal = (e) => {
   e.preventDefault()
@@ -96,10 +100,6 @@ btnScrollTo.addEventListener('click', (e) => {
 
 // tabs
 
-const tabs = document.querySelectorAll('.operations__tab')
-const tabsContainer = document.querySelector('.operations__tab-container')
-const tabsContent = document.querySelectorAll('.operations__content')
-
 tabsContainer.addEventListener('click', (e) => {
   const clicked = e.target.closest('.operations__tab')
 
@@ -107,10 +107,30 @@ tabsContainer.addEventListener('click', (e) => {
 
   tabs.forEach(t => t.classList.remove('operations__tab--active'))
   clicked.classList.add('operations__tab--active')
-  
+
   tabsContent.forEach(t => t.classList.remove('operations__content--active'))
   document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active')
 })
+
+// link fade 
+
+const fadeLink = function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link')
+    const logo = link.closest('.nav').querySelector('img')
+    
+    siblings.forEach(s => {if (s !== link) s.style.opacity = this})
+    logo.style.opacity = this
+  }
+}
+
+nav.addEventListener('mouseover', fadeLink.bind(0.5))
+nav.addEventListener('mouseout', fadeLink.bind(1))
+
+// sticky navigation
+
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////

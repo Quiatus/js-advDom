@@ -130,6 +130,19 @@ nav.addEventListener('mouseout', fadeLink.bind(1))
 
 // sticky navigation
 
+const stickyNav = (entries) => {
+  const [entry] = entries
+
+  if (!entry.isIntersecting) nav.classList.add('sticky')
+  else nav.classList.remove('sticky')
+}
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: "-90px"
+})
+headerObserver.observe(header)
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -193,3 +206,16 @@ nav.addEventListener('mouseout', fadeLink.bind(1))
 // console.log(h1.nextSibling)
 // console.log(h1.parentElement.children)
 
+// observer 
+
+// const obsCallback = (entries, observer) => {
+//   entries.forEach(entry => {console.log(entry)})
+// }
+
+// const obsOptions = {
+//   root: null, // viewport
+//   threshold: [0, 0.2]
+// }
+
+// const observer = new IntersectionObserver(obsCallback, obsOptions)
+// observer.observe(section1)
